@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #0B0C10;
+  --color-gunmetal: #1F2833;
+  --color-electric-purple: #B92B27;
+  --color-cyan: #1565C0;
+  --color-ash: #C5C6C7;
+  --color-white: #FFFFFF;
+
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Orbitron', sans-serif;
+}
+
+body {
+  background-color: var(--color-obsidian);
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  /* Custom crosshair cursor */
+  cursor: crosshair;
+  overflow-x: hidden;
+}
+
+a, button, [role="button"] {
+  cursor: crosshair;
+}
+
+/* RGB Border Glow Animation */
+@keyframes rgb-glow {
+  0% { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); }
+  16% { border-color: #ff00ff; box-shadow: 0 0 15px rgba(255, 0, 255, 0.5); }
+  33% { border-color: #0000ff; box-shadow: 0 0 15px rgba(0, 0, 255, 0.5); }
+  50% { border-color: #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); }
+  66% { border-color: #00ff00; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); }
+  83% { border-color: #ffff00; box-shadow: 0 0 15px rgba(255, 255, 0, 0.5); }
+  100% { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); }
+}
+
+.rgb-hover {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rgb-hover:hover {
+  animation: rgb-glow 3s linear infinite;
+  transform: translateY(-2px);
+  z-index: 10;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(31, 40, 51, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Terminal Typing Cursor */
+.typing-cursor::after {
+  content: '█';
+  animation: blink 1s step-start infinite;
+  color: #00ff00;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Scanline effect overlay */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.1) 50%,
+    rgba(0,0,0,0.1)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gunmetal);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-electric-purple);
+}
